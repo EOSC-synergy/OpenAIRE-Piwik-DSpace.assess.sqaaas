@@ -1,0 +1,46 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: fix/updatego
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/openaire/OpenAIRE-Piwik-DSpace:
+      branch: master
+      repo: https://github.com/openaire/OpenAIRE-Piwik-DSpace
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/openaire/OpenAIRE-Piwik-DSpace git:
+        commands:
+        - /usr/bin/env sh .sqa/script.clove_bold_condor.sh
+        container: qc.acc_powder_studious_horse
+  QC.Doc:
+    repos:
+      github.com/openaire/OpenAIRE-Piwik-DSpace find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.lilac_confident_kangaroo.sh
+        container: qc.doc_byzantium_positive_kirin
+      github.com/openaire/OpenAIRE-Piwik-DSpace git:
+        commands:
+        - /usr/bin/env sh .sqa/script.ceru_flexible_tapir.sh
+        container: qc.doc_daffodil_proud_cougar
+      github.com/openaire/OpenAIRE-Piwik-DSpace markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.beige_romantic_weasel.sh
+        container: qc.doc_wave_patient_whale
+  QC.Lic:
+    repos:
+      github.com/openaire/OpenAIRE-Piwik-DSpace licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.mint_fierce_warthog.sh
+        container: qc.lic_aquamarine_dedicated_chipmunk
+  QC.Ver:
+    repos:
+      github.com/openaire/OpenAIRE-Piwik-DSpace get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.cardamom_adventurous_hedgehog.sh
+        container: qc.ver_aqua_apathetic_ostrich
+timeout: 5400
